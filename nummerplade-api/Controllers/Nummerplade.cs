@@ -26,7 +26,7 @@ public class NummerpladeController : ControllerBase
     }
 
     [HttpGet("plade/{nrplade}")]
-    public async Task<ActionResult<string>> GetForsikringFromPlade(string nrplade)
+    public async Task<ActionResult<string>> GetInsuranceFromRegistration(string nrplade)
     {
 
         // Init HTTPClient
