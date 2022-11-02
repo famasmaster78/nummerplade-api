@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using nummerplade_api.Classes;
+using nummerplade_api.Classes; 
 
 namespace nummerplade_api.Controllers;
 
 // Import HTML agility
 using HtmlAgilityPack;
 using nummerplade_api.Functions;
-using OpenQA.Selenium.DevTools.V104.Runtime;
 
 [ApiController]
-[Route("/api/forsikring")]
+[Route("/api/insurance")]
 public class NummerpladeController : ControllerBase
 {
 
@@ -21,13 +20,28 @@ public class NummerpladeController : ControllerBase
     {
 
         // Return
-        return $"Du skal indtaste nummerplade eller VIN!";
+        return $"You need to supply eiter registration or VIN!";
 
     }
 
+    /// <summary>
+    /// Return insurance information regarding supplied registration.
+    /// </summary>
+    /// <param name="nrplade"></param>
+    /// <returns></returns>
     [HttpGet("plade/{nrplade}")]
-    public async Task<ActionResult<string>> GetInsuranceFromRegistration(string nrplade)
+    public async Task<IActionResult> GetInsuranceFromRegistration(string nrplade)
     {
+
+        InsuranceReturn returnObject = new InsuranceReturn();
+
+        // Check if plate is 7 characters long
+        if (nrplade.Length != 7)
+        {
+            returnObject.success = false;
+            returnObject.status = "Incorrect plate length!";
+            return Ok(returnObject);
+        }
 
         // Init HTTPClient
         var httpClient = new HttpClient();
@@ -37,9 +51,18 @@ public class NummerpladeController : ControllerBase
 
         // Get insurance
         Insurance insurance = (await httpClient.GetFromJsonAsync<extendednew>($"https://www.tjekbil.dk/api/v3/dmr/kid/{carId}/extendednew")).insurance;
+        returnObject.Insurance = insurance;
+
+        // Check if this vehicle is police-owned
+        if (insurance is not null && insurance.selskab == "SELVFORSIKRING")
+        {
+            returnObject.is_police_vehicle = true;
+            returnObject.status = "Vehicle is owned by police.";
+            returnObject.success = true;
+        }
 
         // Return
-        return $"Du søger efter køretøj med reg. nummer: {nrplade} - Med forsikring {insurance.selskab} - oprettet d. {insurance.oprettet}";
+        return Ok(returnObject);
 
     }
 

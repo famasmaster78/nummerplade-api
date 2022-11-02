@@ -22,9 +22,6 @@
         public Techical techical { get; set; }
     }
 
-
-
-
     // Sub classes
     public class BasicInformation
     {
