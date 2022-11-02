@@ -3,8 +3,11 @@ using nummerplade_api.Classes;
 
 namespace nummerplade_api.Controllers;
 
+using System.Text.Json;
+
 // Import HTML agility
 using HtmlAgilityPack;
+using Newtonsoft.Json;
 using nummerplade_api.Functions;
 
 [ApiController]
@@ -40,7 +43,7 @@ public class NummerpladeController : ControllerBase
         {
             returnObject.success = false;
             returnObject.status = "Incorrect plate length!";
-            return Ok(returnObject);
+            return Ok(new { insurance = new Insurance(), status = returnObject.status, success = returnObject.success, is_police_vehicle = returnObject.is_police_vehicle });
         }
 
         // Init HTTPClient
@@ -53,16 +56,27 @@ public class NummerpladeController : ControllerBase
         Insurance insurance = (await httpClient.GetFromJsonAsync<extendednew>($"https://www.tjekbil.dk/api/v3/dmr/kid/{carId}/extendednew")).insurance;
         returnObject.Insurance = insurance;
 
+        if (insurance is null) {
+            return NotFound();
+        }
+
         // Check if this vehicle is police-owned
-        if (insurance is not null && insurance.selskab == "SELVFORSIKRING")
+        if (insurance.selskab == "SELVFORSIKRING")
         {
+            // Update object
             returnObject.is_police_vehicle = true;
-            returnObject.status = "Vehicle is owned by police.";
+            returnObject.status = "Vehicle is owned by the police.";
+            returnObject.success = true;
+        }else
+        {
+            // Update object
+            returnObject.is_police_vehicle = false;
+            returnObject.status = "Vehicle is not owned by the police.";
             returnObject.success = true;
         }
 
         // Return
-        return Ok(returnObject);
+        return Ok(new { insurance = insurance, status = returnObject.status, success = returnObject.success, is_police_vehicle = returnObject.is_police_vehicle });
 
     }
 
