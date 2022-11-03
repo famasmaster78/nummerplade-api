@@ -53,15 +53,17 @@ public class NummerpladeController : ControllerBase
         string carId = (await httpClient.GetFromJsonAsync<dmr_data>($"https://www.tjekbil.dk/api/v3/dmr/regnr/{nrplade}")).debtData.carId;
 
         // Get insurance
-        Insurance insurance = (await httpClient.GetFromJsonAsync<Extended>($"https://www.tjekbil.dk/api/v3/dmr/kid/{carId}/extendednew")).insurance;
-        returnObject.Insurance = insurance;
+        returnObject.Insurance = (await httpClient.GetFromJsonAsync<Extended>($"https://www.tjekbil.dk/api/v3/dmr/kid/{carId}/extendednew")).insurance;
 
-        if (insurance is null) {
+        // Empty list
+        returnObject.Insurance.historik = new List<Historik>();
+
+        if (returnObject.Insurance is null) {
             return NotFound();
         }
 
         // Check if this vehicle is police-owned
-        if (insurance.selskab == "SELVFORSIKRING")
+        if (returnObject.Insurance.selskab == "SELVFORSIKRING")
         {
             // Update object
             returnObject.is_police_vehicle = true;
@@ -76,7 +78,7 @@ public class NummerpladeController : ControllerBase
         }
 
         // Return
-        return Ok(new { status = returnObject.status, success = returnObject.success, is_police_vehicle = returnObject.is_police_vehicle, insurance = insurance });
+        return Ok(new { status = returnObject.status, success = returnObject.success, is_police_vehicle = returnObject.is_police_vehicle, insurance = returnObject.Insurance });
 
     }
 
