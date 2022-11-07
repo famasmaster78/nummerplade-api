@@ -7,7 +7,7 @@ namespace nummerplade_api.Classes
         public string? status = "";
         public bool is_police_vehicle = false;
         public Insurance Insurance;
-
+        public General? General;
     }
 }
 

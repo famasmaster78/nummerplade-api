@@ -43,7 +43,7 @@ public class NummerpladeController : ControllerBase
         {
             returnObject.success = false;
             returnObject.status = "Incorrect plate length!";
-            return Ok(new { status = returnObject.status, success = returnObject.success, is_police_vehicle = returnObject.is_police_vehicle, insurance = new Insurance() });
+            return Ok(new { returnObject, Insurance = new Insurance(), General = new General() });
         }
 
         // Init HTTPClient
@@ -53,7 +53,9 @@ public class NummerpladeController : ControllerBase
         string carId = (await httpClient.GetFromJsonAsync<dmr_data>($"https://www.tjekbil.dk/api/v3/dmr/regnr/{nrplade}")).debtData.carId;
 
         // Get insurance
-        returnObject.Insurance = (await httpClient.GetFromJsonAsync<Extended>($"https://www.tjekbil.dk/api/v3/dmr/kid/{carId}/extendednew")).insurance;
+        var response = (await httpClient.GetFromJsonAsync<Extended>($"https://www.tjekbil.dk/api/v3/dmr/kid/{carId}/extendednew"));
+        returnObject.Insurance = response.insurance;
+        returnObject.General = response.general;
 
         // Empty list
         returnObject.Insurance.historik = new List<Historik>();
@@ -78,7 +80,7 @@ public class NummerpladeController : ControllerBase
         }
 
         // Return
-        return Ok(new { status = returnObject.status, success = returnObject.success, is_police_vehicle = returnObject.is_police_vehicle, insurance = returnObject.Insurance });
+        return Ok(new { returnObject.Insurance, returnObject.General, returnObject.is_police_vehicle, returnObject.status, returnObject.success });
 
     }
 

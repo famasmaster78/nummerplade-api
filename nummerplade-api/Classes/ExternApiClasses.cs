@@ -87,21 +87,13 @@ namespace nummerplade_api.Classes
         public string? farve { get; set; }
         public object? standEfterImport { get; set; }
         public object? modelAar { get; set; }
-        public bool? ncapTest { get; set; }
-        public string? type { get; set; }
         public bool? automatgear { get; set; }
         public bool? hoejrestyring { get; set; }
         public bool? turbo { get; set; }
-        public bool? laederSkindSaede { get; set; }
-        public bool? massageSaede { get; set; }
-        public bool? memorySaede { get; set; }
-        public bool? sportKomfortSaede { get; set; }
-        public bool? ventilationISaede { get; set; }
         public int? antalAirbags { get; set; }
         public int? koeretoejMotorKilometerstand { get; set; }
         public string? sekundaerStatus { get; set; }
         public DateTime? sekundaerStatusDato { get; set; }
-        public List<string>? koeretoejUdstyrSamling { get; set; }
         public bool? blockedStatus { get; set; }
         public string? blockedDescription { get; set; }
         public string? kmDisplay { get; set; }
