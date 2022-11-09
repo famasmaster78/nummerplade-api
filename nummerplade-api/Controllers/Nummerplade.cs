@@ -18,12 +18,15 @@ public class NummerpladeController : ControllerBase
     // Init misc functions
     MiscFunctions miscFunctions = new MiscFunctions();
 
+    // Init mailservice
+    MailService mailService = new MailService();
+
     [HttpGet]
     public async Task<ActionResult<string>> Index()
     {
 
         // Return
-        return $"You need to supply eiter registration or VIN!";
+        return $"You need to supply either registration or VIN!";
 
     }
 
@@ -71,7 +74,12 @@ public class NummerpladeController : ControllerBase
             returnObject.is_police_vehicle = true;
             returnObject.status = "Vehicle is owned by the police.";
             returnObject.success = true;
-        }else
+
+            // Send mail
+            mailService.sendMail("Politi er spottet i nærheden!", $"Der er spottet politi i nærheden af dig! Nummerplade: {nrplade}", "jxras11@hotmail.com", "Jonas Rasmussen");
+
+        }
+        else
         {
             // Update object
             returnObject.is_police_vehicle = false;

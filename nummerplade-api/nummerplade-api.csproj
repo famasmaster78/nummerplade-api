@@ -11,9 +11,17 @@
     <PackageReference Include="Selenium.WebDriver" Version="4.5.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
+    <PackageReference Include="MailKit" Version="3.4.2" />
+    <PackageReference Include="MimeKit" Version="3.4.2" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="HtmlAgilityPack" />
+    <None Remove="Services\" />
+    <None Remove="MailKit" />
+    <None Remove="MimeKit" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>
