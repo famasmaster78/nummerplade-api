@@ -62,49 +62,39 @@ public class NummerpladeController : ControllerBase
             return Ok(new { returnObject, Insurance = new Insurance(), General = new General() });
         }
 
-        // First check in local database if this is a registered policecar
-        if (db.Policecars.Any(e => e.Nrplade == nrplade))
+        var response = await miscFunctions.GetCarInformation(nrplade);
+
+        returnObject.Insurance = response.insurance;
+        returnObject.General = response.general;
+
+        // Empty list
+        returnObject.Insurance.historik = new List<Historik>();
+
+        if (returnObject.Insurance is null)
         {
-            // Update
-            policeCarFound = true;
+            return NotFound();
         }
-        else {
-            // Init HTTPClient
-            var httpClient = new HttpClient();
 
-            // Download
-            string carId = (await httpClient.GetFromJsonAsync<dmr_data>($"https://www.tjekbil.dk/api/v3/dmr/regnr/{nrplade}")).debtData.carId;
+        if (returnObject.Insurance.selskab == "SELVFORSIKRING" || true)
+        {
+            // Update boolean
+            policeCarFound = true;
 
-            // Get insurance
-            var response = (await httpClient.GetFromJsonAsync<Extended>($"https://www.tjekbil.dk/api/v3/dmr/kid/{carId}/extendednew"));
-            returnObject.Insurance = response.insurance;
-            returnObject.General = response.general;
-
-            // Empty list
-            returnObject.Insurance.historik = new List<Historik>();
-
-            if (returnObject.Insurance is null)
+            // Add new car to policeCars table
+            // Create new police car
+            Policecar car = new Policecar()
             {
-                return NotFound();
-            }
+                Nrplade = nrplade
+            };
 
-            if (returnObject.Insurance.selskab == "SELVFORSIKRING" || true)
+            // Add to db
+            if (db.Policecars.Any(e => e.Nrplade == nrplade))
             {
-                // Update boolean
-                policeCarFound = true;
-
-                // Add new car to policeCars table
-                // Create new police car
-                Policecar car = new Policecar()
-                {
-                    Nrplade = nrplade
-                };
-
-                // Add to db
+                // Add car
                 db.Policecars.Add(car);
-
-
             }
+
+
         }
 
         // Check if this vehicle is police-owned

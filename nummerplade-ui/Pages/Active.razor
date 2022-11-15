@@ -1,0 +1,52 @@
+﻿@page "/active"
+
+@inject IDbContextFactory<NummerpladeApiContext> DbFactory
+
+<div>
+
+    <h3>Active spottings er vist her!</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nrplade</th>
+                @*<th>Bil info</th>*@
+                <th>Tid</th>
+                <th>Lokation</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var spot in db.Spottings.Where(e => e.ValidUntilDate > DateTime.Now))
+            {
+                // Create local variable with information about the car.
+                @*var carInfo = miscFunctions.GetCarInformation(spot.Nrplade).Result;*@
+
+                <tr>
+                    <td>@spot.Nrplade</td>
+                    @*<td>@carInfo.general.modelAar @carInfo.general.maerke @carInfo.general.model @carInfo.general.variant</td>*@
+                    <td>@spot.AddedDate.ToShortDateString()</td>
+                    <td>@spot.Location</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+
+@code {
+
+    // Create db to be updated
+    public NummerpladeApiContext db;
+    public nummerplade_api.Functions.MiscFunctions miscFunctions = new nummerplade_api.Functions.MiscFunctions();
+
+    // On initialized
+    protected override async Task OnInitializedAsync()
+    {
+        // Create db context and update
+        db = await DbFactory.CreateDbContextAsync();
+    }
+
+}
+
