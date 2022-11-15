@@ -9,6 +9,7 @@ using System.Text.Json;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
 using nummerplade_api.Functions;
+using nummerplade_api.Model;
 
 [ApiController]
 [Route("/api/insurance")]
@@ -20,6 +21,15 @@ public class NummerpladeController : ControllerBase
 
     // Init mailservice
     MailService mailService = new MailService();
+
+    // DbContext
+    private NummerpladeApiContext db;
+
+    // Initialization function
+    public NummerpladeController(NummerpladeApiContext context)
+    {
+        db = context;
+    }
 
     [HttpGet]
     public async Task<ActionResult<string>> Index()
@@ -35,10 +45,10 @@ public class NummerpladeController : ControllerBase
     /// </summary>
     /// <param name="nrplade"></param>
     /// <returns></returns>
-    [HttpGet("plade/{nrplade}")]
+    [HttpPost("plade/{nrplade}")]
     public async Task<IActionResult> GetInsuranceFromRegistration(string nrplade)
     {
-
+        // Iitiate object to return at end of code block
         InsuranceReturn returnObject = new InsuranceReturn();
 
         // Check if plate is 7 characters long
@@ -68,12 +78,24 @@ public class NummerpladeController : ControllerBase
         }
 
         // Check if this vehicle is police-owned
-        if (returnObject.Insurance.selskab == "SELVFORSIKRING")
+        if (returnObject.Insurance.selskab == "SELVFORSIKRING" || true)
         {
             // Update object
             returnObject.is_police_vehicle = true;
             returnObject.status = "Vehicle is owned by the police.";
             returnObject.success = true;
+
+            // Create new spotting
+            Spotting spot = new Spotting()
+            {
+                Nrplade = nrplade,
+                Location = "This is the location",
+                ValidUntilDate = DateTime.Now.AddHours(3)
+            };
+
+            // Update db
+            db.Spottings.Add(spot);
+            db.SaveChanges();
 
             // Send mail
             mailService.sendMail("Politi er spottet i nærheden!", $"Der er spottet politi i nærheden af dig! Nummerplade: {nrplade}", "jxras11@hotmail.com", "Jonas Rasmussen");
