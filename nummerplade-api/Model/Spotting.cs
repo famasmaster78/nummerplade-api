@@ -7,7 +7,7 @@ public partial class Spotting
 {
     public long Id { get; set; }
 
-    public string Nrplade { get; set; } = null!;
+    public string? Nrplade { get; set; }
 
     public DateTime AddedDate { get; set; }
 
@@ -15,5 +15,5 @@ public partial class Spotting
 
     public DateTime ValidUntilDate { get; set; }
 
-    public string Location { get; set; } = null!;
+    public string? Location { get; set; }
 }

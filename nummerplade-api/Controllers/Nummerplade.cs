@@ -51,6 +51,9 @@ public class NummerpladeController : ControllerBase
         // Iitiate object to return at end of code block
         InsuranceReturn returnObject = new InsuranceReturn();
 
+        // Bool to check if plate is found in any police-vehicle source
+        bool policeCarFound = false;
+
         // Check if plate is 7 characters long
         if (nrplade.Length != 7)
         {
@@ -59,26 +62,53 @@ public class NummerpladeController : ControllerBase
             return Ok(new { returnObject, Insurance = new Insurance(), General = new General() });
         }
 
-        // Init HTTPClient
-        var httpClient = new HttpClient();
+        // First check in local database if this is a registered policecar
+        if (db.Policecars.Any(e => e.Nrplade == nrplade))
+        {
+            // Update
+            policeCarFound = true;
+        }
+        else {
+            // Init HTTPClient
+            var httpClient = new HttpClient();
 
-        // Download
-        string carId = (await httpClient.GetFromJsonAsync<dmr_data>($"https://www.tjekbil.dk/api/v3/dmr/regnr/{nrplade}")).debtData.carId;
+            // Download
+            string carId = (await httpClient.GetFromJsonAsync<dmr_data>($"https://www.tjekbil.dk/api/v3/dmr/regnr/{nrplade}")).debtData.carId;
 
-        // Get insurance
-        var response = (await httpClient.GetFromJsonAsync<Extended>($"https://www.tjekbil.dk/api/v3/dmr/kid/{carId}/extendednew"));
-        returnObject.Insurance = response.insurance;
-        returnObject.General = response.general;
+            // Get insurance
+            var response = (await httpClient.GetFromJsonAsync<Extended>($"https://www.tjekbil.dk/api/v3/dmr/kid/{carId}/extendednew"));
+            returnObject.Insurance = response.insurance;
+            returnObject.General = response.general;
 
-        // Empty list
-        returnObject.Insurance.historik = new List<Historik>();
+            // Empty list
+            returnObject.Insurance.historik = new List<Historik>();
 
-        if (returnObject.Insurance is null) {
-            return NotFound();
+            if (returnObject.Insurance is null)
+            {
+                return NotFound();
+            }
+
+            if (returnObject.Insurance.selskab == "SELVFORSIKRING" || true)
+            {
+                // Update boolean
+                policeCarFound = true;
+
+                // Add new car to policeCars table
+                // Create new police car
+                Policecar car = new Policecar()
+                {
+                    Nrplade = nrplade
+                };
+
+                // Add to db
+                db.Policecars.Add(car);
+
+
+            }
         }
 
         // Check if this vehicle is police-owned
-        if (returnObject.Insurance.selskab == "SELVFORSIKRING" || true)
+        if (policeCarFound)
         {
             // Update object
             returnObject.is_police_vehicle = true;
@@ -95,7 +125,6 @@ public class NummerpladeController : ControllerBase
 
             // Update db
             db.Spottings.Add(spot);
-            db.SaveChanges();
 
             // Send mail
             mailService.sendMail("Politi er spottet i nærheden!", $"Der er spottet politi i nærheden af dig! Nummerplade: {nrplade}", "jxras11@hotmail.com", "Jonas Rasmussen");
@@ -108,6 +137,9 @@ public class NummerpladeController : ControllerBase
             returnObject.status = "Vehicle is not owned by the police.";
             returnObject.success = true;
         }
+
+        // Save changes made to db
+        db.SaveChanges();
 
         // Return
         return Ok(new { returnObject.Insurance, returnObject.General, returnObject.is_police_vehicle, returnObject.status, returnObject.success });
