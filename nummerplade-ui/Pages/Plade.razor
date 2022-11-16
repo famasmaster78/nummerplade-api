@@ -1,0 +1,92 @@
+﻿@page "/plade"
+
+<h3>Tjek om en bil er civilpoliti</h3>
+
+<div class="d-flex justify-content-center">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Nr. plade</span>
+        <input @bind-value=inputPlade type="text" class="form-control" placeholder="DM44459" aria-label="DM44459" aria-describedby="basic-addon1">
+        <button class="btn btn-primary" disabled="@loading" @onclick="() => fetchFromPlate(inputPlade)" >Søg</button>
+    </div>
+</div>
+
+@if (loading)
+{
+    <div class="spinner-border spinner-border-sm" role="status">
+        <span class="visually-hidden"></span>
+    </div>
+}
+
+@*Show car information*@
+@if (ExtendedCarInfo is not null)
+{
+    <div class="d-flex flex-column gap-3 align-items-center justify-content-center">
+
+        <div class="d-flex gap-2 @(!(ExtendedCarInfo?.insurance?.selskab == "SELVFORSIKRING") ? "bg-success" : "bg-warning") rounded p-2 text-white">
+            Dette køretøj er @(!(ExtendedCarInfo?.insurance?.selskab == "SELVFORSIKRING") ? "ikke" : "") ejet af politiet
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr class="table-dark">
+                    <th>Bil</th>
+                    <th>Forsikring</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>
+                            <b>1. indreg</b>
+                            @ExtendedCarInfo?.general?.firstRegDate.Value.ToShortDateString()
+                        </p>
+                        <p>
+                            <b>Model</b>
+                            @ExtendedCarInfo?.general?.model @ExtendedCarInfo?.general?.variant
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <b>Status</b>
+                            @ExtendedCarInfo?.insurance?.status
+                        </p>
+                        <p>
+                            <b>Selskab</b>
+                            @ExtendedCarInfo?.insurance?.selskab @ExtendedCarInfo?.insurance?.oprettet
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+}
+
+@code {
+
+    // Variabkes
+    public string inputPlade = "";
+    public nummerplade_api.Classes.Extended? ExtendedCarInfo;
+    public bool loading = false;
+
+    public nummerplade_api.Functions.MiscFunctions miscFunctions = new nummerplade_api.Functions.MiscFunctions();
+
+    // Function for fetching car information
+    public async Task fetchFromPlate(string nrplade)
+    {
+        // Loading
+        loading = true;
+
+        // Fetch
+        ExtendedCarInfo = await miscFunctions.GetCarInformation(nrplade);
+
+        // Loading
+        loading = false;
+
+        StateHasChanged();
+
+        return;
+    }
+
+}
+
