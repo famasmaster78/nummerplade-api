@@ -31,15 +31,6 @@ public class NummerpladeController : ControllerBase
         db = context;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<string>> Index()
-    {
-
-        // Return
-        return $"You need to supply either registration or VIN!";
-
-    }
-
     /// <summary>
     /// Return insurance information regarding supplied registration.
     /// </summary>
