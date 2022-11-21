@@ -1,4 +1,5 @@
-﻿using nummerplade_api.Classes;
+﻿using System.Text.RegularExpressions;
+using nummerplade_api.Classes;
 using nummerplade_api.Model;
 
 namespace nummerplade_api.Functions
@@ -28,6 +29,22 @@ namespace nummerplade_api.Functions
             // Return
             return response;
 
+        }
+
+        public bool validateEmail(string email)
+        {
+            // Regex pattern
+            string pattern = @"^((\w[^\W]+)[\.\-]?){1,}\@(([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$";
+            string substitution = @"";
+
+            // Regex options
+            RegexOptions options = RegexOptions.Multiline;
+
+            // Create regex
+            Regex regex = new Regex(pattern, options);
+
+            // Check if match
+            return regex.IsMatch(email);
         }
 
     }

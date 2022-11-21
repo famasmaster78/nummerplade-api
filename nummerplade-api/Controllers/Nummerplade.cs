@@ -62,6 +62,14 @@ public class NummerpladeController : ControllerBase
             return Ok(new { returnObject, Insurance = new Insurance(), General = new General() });
         }
 
+        // Validate email
+        if (miscFunctions.validateEmail(body.Email))
+        {
+            returnObject.success = false;
+            returnObject.status = "Invalid email supplied!";
+            return Ok(new { returnObject, Insurance = new Insurance(), General = new General() });
+        }
+
         var response = await miscFunctions.GetCarInformation(nrplade);
 
         returnObject.Insurance = response.insurance;
