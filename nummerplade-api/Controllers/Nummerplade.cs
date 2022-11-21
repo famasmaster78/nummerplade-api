@@ -37,14 +37,11 @@ public class NummerpladeController : ControllerBase
     /// <param name="nrplade"></param>
     /// <returns></returns>
     [HttpPost("plade/{nrplade}")]
-    public async Task<IActionResult> GetInsuranceFromRegistration(string nrplade, [FromBody]string content)
+    public async Task<IActionResult> GetInsuranceFromRegistration(string nrplade, [FromBody]ApiPladePost body)
     {
 
         // Iitiate object to return at end of code block
         InsuranceReturn returnObject = new InsuranceReturn();
-
-        // Load input object
-        ApiPladePost body = JsonConvert.DeserializeObject<ApiPladePost>(content);
 
         // Check body
         if (body.Email is null || body.Location is null)

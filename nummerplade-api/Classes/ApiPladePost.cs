@@ -3,8 +3,8 @@ namespace nummerplade_api.Classes
 {
     public class ApiPladePost
     {
-        public string Location;
-        public string Email;
+        public string Location { get; set; }
+        public string Email { get; set; }
     }
 }
 
