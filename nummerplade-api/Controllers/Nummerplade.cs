@@ -37,10 +37,22 @@ public class NummerpladeController : ControllerBase
     /// <param name="nrplade"></param>
     /// <returns></returns>
     [HttpPost("plade/{nrplade}")]
-    public async Task<IActionResult> GetInsuranceFromRegistration(string nrplade)
+    public async Task<IActionResult> GetInsuranceFromRegistration(string nrplade, [FromBody]string content)
     {
+
         // Iitiate object to return at end of code block
         InsuranceReturn returnObject = new InsuranceReturn();
+
+        // Load input object
+        ApiPladePost body = JsonConvert.DeserializeObject<ApiPladePost>(content);
+
+        // Check body
+        if (body.Email is null || body.Location is null)
+        {
+            returnObject.success = false;
+            returnObject.status = $"All parameters are not fulfilled!";
+            return NotFound(new { returnObject, Insurance = new Insurance(), General = new General() });
+        }
 
         // Bool to check if plate is found in any police-vehicle source
         bool policeCarFound = false;
@@ -66,7 +78,7 @@ public class NummerpladeController : ControllerBase
             return NotFound();
         }
 
-        if (returnObject.Insurance.selskab == "SELVFORSIKRING" || true)
+        if (returnObject.Insurance.selskab == "SELVFORSIKRING")
         {
             // Update boolean
             policeCarFound = true;
@@ -108,7 +120,7 @@ public class NummerpladeController : ControllerBase
             db.Spottings.Add(spot);
 
             // Send mail
-            mailService.sendMail("Politi er spottet i nærheden!", $"Der er spottet politi i nærheden af dig! Nummerplade: {nrplade}", "jxras11@hotmail.com", "Jonas Rasmussen");
+            mailService.sendMail("Politi er spottet i nærheden!", $"Der er spottet politi i nærheden af dig! Nummerplade: {nrplade}", body.Email, "Jonas Rasmussen");
 
         }
         else
