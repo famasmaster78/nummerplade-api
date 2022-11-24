@@ -62,7 +62,8 @@ namespace nummerplade_api.Functions
             Regex regex = new Regex(pattern, options);
 
             // Check if match
-            return regex.IsMatch(email);
+            bool isMatch = regex.IsMatch(email);
+            return isMatch;
         }
 
     }

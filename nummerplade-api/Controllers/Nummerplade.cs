@@ -59,21 +59,21 @@ public class NummerpladeController : ControllerBase
         {
             returnObject.success = false;
             returnObject.status = "Incorrect plate length!";
-            return BadRequest();
+            return BadRequest(new { status = returnObject.status, success = returnObject.success });
         }
 
         // Validate email
-        if (miscFunctions.validateEmail(body.Email))
+        if (!miscFunctions.validateEmail(body.Email))
         {
             returnObject.success = false;
             returnObject.status = "Invalid email supplied!";
-            return BadRequest();
+            return BadRequest(new { status = returnObject.status, success = returnObject.success });
         }
 
         // Check if car exists
         if (!(await miscFunctions.CarExists(nrplade)))
         {
-            return NotFound();
+            return NotFound(new {status = "Car not found", success = false});
         }
 
         // Get information about car
@@ -87,7 +87,7 @@ public class NummerpladeController : ControllerBase
 
         if (returnObject.Insurance is null)
         {
-            return NotFound();
+            return NotFound(new {status = "Insurance not found", success = false});
         }
 
         if (returnObject.Insurance.selskab == "SELVFORSIKRING")
