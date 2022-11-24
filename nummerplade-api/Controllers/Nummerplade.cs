@@ -48,7 +48,7 @@ public class NummerpladeController : ControllerBase
         {
             returnObject.success = false;
             returnObject.status = $"All parameters are not fulfilled!";
-            return BadRequest();
+            return BadRequest(new {success = returnObject.success, status = returnObject.status});
         }
 
         // Bool to check if plate is found in any police-vehicle source
