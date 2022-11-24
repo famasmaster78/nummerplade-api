@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Net.Http;
+using System.Text.RegularExpressions;
 using nummerplade_api.Classes;
 using nummerplade_api.Model;
 
@@ -12,6 +13,23 @@ namespace nummerplade_api.Functions
             // Return
             return $"https://www.nummerplade.net/nummerplade/{nrplade}.html";
 
+        }
+
+        public async Task<bool> CarExists(string nrplade)
+        {
+
+            // Init HTTPClient
+            var httpClient = new HttpClient();
+
+            bool carStatus = false;
+
+            if ((await httpClient.GetAsync($"https://www.tjekbil.dk/api/v3/dmr/regnr/{nrplade}")).StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                // Car exists
+                carStatus = true;
+            }
+
+            return carStatus;
         }
 
         public async Task<Extended> GetCarInformation(string nrplade)

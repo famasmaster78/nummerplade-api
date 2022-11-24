@@ -48,7 +48,7 @@ public class NummerpladeController : ControllerBase
         {
             returnObject.success = false;
             returnObject.status = $"All parameters are not fulfilled!";
-            return NotFound(new { returnObject, Insurance = new Insurance(), General = new General() });
+            return BadRequest();
         }
 
         // Bool to check if plate is found in any police-vehicle source
@@ -59,7 +59,7 @@ public class NummerpladeController : ControllerBase
         {
             returnObject.success = false;
             returnObject.status = "Incorrect plate length!";
-            return Ok(new { returnObject, Insurance = new Insurance(), General = new General() });
+            return BadRequest();
         }
 
         // Validate email
@@ -67,9 +67,16 @@ public class NummerpladeController : ControllerBase
         {
             returnObject.success = false;
             returnObject.status = "Invalid email supplied!";
-            return Ok(new { returnObject, Insurance = new Insurance(), General = new General() });
+            return BadRequest();
         }
 
+        // Check if car exists
+        if (!(await miscFunctions.CarExists(nrplade)))
+        {
+            return NotFound();
+        }
+
+        // Get information about car
         var response = await miscFunctions.GetCarInformation(nrplade);
 
         returnObject.Insurance = response.insurance;
