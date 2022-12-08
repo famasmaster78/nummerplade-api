@@ -53,10 +53,14 @@ public partial class NummerpladeApiContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("added_date");
-            entity.Property(e => e.Location)
+            entity.Property(e => e.LocationX)
                 .HasMaxLength(100)
                 .IsUnicode(false)
-                .HasColumnName("location");
+                .HasColumnName("locationX");
+            entity.Property(e => e.LocationY)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("locationY");
             entity.Property(e => e.ModifiedDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")

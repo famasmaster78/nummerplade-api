@@ -8,49 +8,57 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = nummerplade_ui
 build_property.RootNamespace = nummerplade_ui
-build_property.ProjectDir = C:\Users\Jxras\source\repos\nummerplade-api\nummerplade-ui\
+build_property.ProjectDir = /Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Jxras\source\repos\nummerplade-api\nummerplade-ui
+build_property.MSBuildProjectDirectory = /Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Jxras/source/repos/nummerplade-api/nummerplade-ui/App.razor]
+[/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jxras/source/repos/nummerplade-api/nummerplade-ui/Pages/Active.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWN0aXZlLnJhem9y
+[/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/Pages/Active.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWN0aXZlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jxras/source/repos/nummerplade-api/nummerplade-ui/Pages/Index.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+[/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/Pages/History.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSGlzdG9yeS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jxras/source/repos/nummerplade-api/nummerplade-ui/Pages/Plade.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGxhZGUucmF6b3I=
+[/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jxras/source/repos/nummerplade-api/nummerplade-ui/_Imports.razor]
+[/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/Pages/Map.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/Pages/Plade.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGxhZGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jxras/source/repos/nummerplade-api/nummerplade-ui/Shared/MainLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-vzdvmgr4c3
+[/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-z6ky2gr090
 
-[C:/Users/Jxras/source/repos/nummerplade-api/nummerplade-ui/Shared/NavMenu.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-2htykz09vl
+[/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-99e5758cot
 
-[C:/Users/Jxras/source/repos/nummerplade-api/nummerplade-ui/Pages/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+[/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jxras/source/repos/nummerplade-api/nummerplade-ui/Pages/_Host.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+[/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jxras/source/repos/nummerplade-api/nummerplade-ui/Pages/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+[/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jxras\\source\\repos\\nummerplade-api\\nummerplade-ui\\nummerplade-ui.csproj": {}
+    "/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/nummerplade-ui.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jxras\\source\\repos\\nummerplade-api\\nummerplade-api\\nummerplade-api.csproj": {
+    "/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-api/nummerplade-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jxras\\source\\repos\\nummerplade-api\\nummerplade-api\\nummerplade-api.csproj",
+        "projectUniqueName": "/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-api/nummerplade-api.csproj",
         "projectName": "nummerplade-api",
-        "projectPath": "C:\\Users\\Jxras\\source\\repos\\nummerplade-api\\nummerplade-api\\nummerplade-api.csproj",
-        "packagesPath": "C:\\Users\\Jxras\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jxras\\source\\repos\\nummerplade-api\\nummerplade-api\\obj\\",
+        "projectPath": "/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-api/nummerplade-api.csproj",
+        "packagesPath": "/Users/jonasrasmussen/.nuget/packages/",
+        "outputPath": "/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jxras\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/jonasrasmussen/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -90,36 +88,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.403/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Jxras\\source\\repos\\nummerplade-api\\nummerplade-ui\\nummerplade-ui.csproj": {
+    "/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/nummerplade-ui.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jxras\\source\\repos\\nummerplade-api\\nummerplade-ui\\nummerplade-ui.csproj",
+        "projectUniqueName": "/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/nummerplade-ui.csproj",
         "projectName": "nummerplade-ui",
-        "projectPath": "C:\\Users\\Jxras\\source\\repos\\nummerplade-api\\nummerplade-ui\\nummerplade-ui.csproj",
-        "packagesPath": "C:\\Users\\Jxras\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jxras\\source\\repos\\nummerplade-api\\nummerplade-ui\\obj\\",
+        "projectPath": "/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/nummerplade-ui.csproj",
+        "packagesPath": "/Users/jonasrasmussen/.nuget/packages/",
+        "outputPath": "/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-ui/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jxras\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/jonasrasmussen/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Jxras\\source\\repos\\nummerplade-api\\nummerplade-api\\nummerplade-api.csproj": {
-                "projectPath": "C:\\Users\\Jxras\\source\\repos\\nummerplade-api\\nummerplade-api\\nummerplade-api.csproj"
+              "/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-api/nummerplade-api.csproj": {
+                "projectPath": "/Users/jonasrasmussen/Projects/nummerplade-api/nummerplade-api/nummerplade-api.csproj"
               }
             }
           }
@@ -137,6 +133,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "Radzen.Blazor": {
+              "target": "Package",
+              "version": "[4.4.3, )"
             }
           },
           "imports": [
@@ -158,7 +158,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.403/RuntimeIdentifierGraph.json"
         }
       }
     }

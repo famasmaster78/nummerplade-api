@@ -4,7 +4,7 @@
 
 <div>
 
-    <h3>Active spottings er vist her!</h3>
+    <h3>Active spottings er vist her! <a href="/kort">Se på kort</a></h3>
 
     <table class="table table-striped">
         <thead>
@@ -25,7 +25,7 @@
                     <td>@spot.Nrplade</td>
                     @*<td>@carInfo.general.modelAar @carInfo.general.maerke @carInfo.general.model @carInfo.general.variant</td>*@
                     <td>@spot.AddedDate.ToShortDateString()</td>
-                    <td>@spot.Location</td>
+                    <td>@spot.LocationX @spot.LocationY</td>
                 </tr>
             }
         </tbody>

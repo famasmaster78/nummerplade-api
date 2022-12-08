@@ -10,9 +10,11 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'nummerplade-ui' " />
   <ItemGroup>
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
+    <None Remove="Radzen.Blazor" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
+    <PackageReference Include="Radzen.Blazor" Version="4.4.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\nummerplade-api\nummerplade-api.csproj">

@@ -13,7 +13,7 @@
           "Microsoft.EntityFrameworkCore.Design": "7.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0",
           "MimeKit": "3.4.2",
-          "Selenium.WebDriver": "4.5.1",
+          "Selenium.WebDriver": "4.6.0",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
         "runtime": {
@@ -503,7 +503,7 @@
           }
         }
       },
-      "Selenium.WebDriver/4.5.1": {
+      "Selenium.WebDriver/4.6.0": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.1"
         },
@@ -1124,12 +1124,12 @@
       "path": "portable.bouncycastle/1.9.0",
       "hashPath": "portable.bouncycastle.1.9.0.nupkg.sha512"
     },
-    "Selenium.WebDriver/4.5.1": {
+    "Selenium.WebDriver/4.6.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ztu9Qv2n5/NkqPs0MQ3nojMJuW2PVHrAKDukmT77HbYAGhZI370Hp0EJNqyucJuud937Lr/qvXsoOtLZ18VFnw==",
-      "path": "selenium.webdriver/4.5.1",
-      "hashPath": "selenium.webdriver.4.5.1.nupkg.sha512"
+      "sha512": "sha512-wdkzNyVYvdI0YOeScP42ubshPOjY7dj8aXHyetlhVTqKo5gAbYnOJU//W5q0hVSVw4hsisNvgR/UQqPvgM8rew==",
+      "path": "selenium.webdriver/4.6.0",
+      "hashPath": "selenium.webdriver.4.6.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.4.0": {
       "type": "package",
