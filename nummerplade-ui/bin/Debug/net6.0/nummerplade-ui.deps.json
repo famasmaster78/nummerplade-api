@@ -10,6 +10,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0",
           "Radzen.Blazor": "4.4.3",
+          "System.Globalization": "4.3.0",
           "nummerplade-api": "1.0.0"
         },
         "runtime": {

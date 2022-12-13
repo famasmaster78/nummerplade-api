@@ -120,20 +120,36 @@ public class NummerpladeController : ControllerBase
             returnObject.status = "Vehicle is owned by the police.";
             returnObject.success = true;
 
-            // Create new spotting
-            Spotting spot = new Spotting()
+            // Check if spotting already exists, and update it
+            if (db.Spottings.Any(e => e.Nrplade == nrplade))
             {
-                Nrplade = nrplade,
-                LocationX = body.Location.X,
-                LocationY = body.Location.Y,
-                ValidUntilDate = DateTime.Now.AddHours(3)
-            };
+                // Update this spotting
+                Spotting foundSpot = db.Spottings.Where(e => e.Nrplade == nrplade).FirstOrDefault();
 
-            // Update db
-            db.Spottings.Add(spot);
+                // Update
+                foundSpot.ModifiedDate = DateTime.Now;
+                foundSpot.LocationX = body.Location.X;
+                foundSpot.LocationY = body.Location.Y;
+                foundSpot.ValidUntilDate = DateTime.Now.AddHours(3);
+
+            }
+            else
+            {
+                // Create new spotting
+                Spotting spot = new Spotting()
+                {
+                    Nrplade = nrplade,
+                    LocationX = body.Location.X,
+                    LocationY = body.Location.Y,
+                    ValidUntilDate = DateTime.Now.AddHours(3)
+                };
+
+                // Update db
+                db.Spottings.Add(spot);
+            }
 
             // Send mail
-            mailService.sendMail("Politi er spottet i nærheden!", $"Der er spottet politi i nærheden af dig! Nummerplade: {nrplade}", body.Email, "Jonas Rasmussen");
+            mailService.sendMail("Politi er spottet i nærheden!", $"Der er spottet politi i nærheden af dig! Nummerplade: {nrplade}", body.Email, "Plate Notifier");
 
         }
         else
