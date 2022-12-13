@@ -9,8 +9,8 @@ namespace nummerplade_api.Classes
 
     public class Location
     {
-        public string X { get; set; }
-        public string Y { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
     }
 }
 

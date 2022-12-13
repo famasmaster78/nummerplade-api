@@ -124,8 +124,8 @@ public class NummerpladeController : ControllerBase
             Spotting spot = new Spotting()
             {
                 Nrplade = nrplade,
-                LocationX = "X coordinate",
-                LocationY = "Y coordinate",
+                LocationX = body.Location.X,
+                LocationY = body.Location.Y,
                 ValidUntilDate = DateTime.Now.AddHours(3)
             };
 

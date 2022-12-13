@@ -15,7 +15,7 @@ public partial class Spotting
 
     public DateTime ValidUntilDate { get; set; }
 
-    public string? LocationX { get; set; }
+    public double? LocationX { get; set; }
 
-    public string? LocationY { get; set; }
+    public double? LocationY { get; set; }
 }

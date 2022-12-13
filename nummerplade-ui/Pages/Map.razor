@@ -19,8 +19,8 @@
                     @* Loop through active spots *@
                     @foreach (var spot in db.Spottings.Where(e => e.ValidUntilDate > DateTime.Now))
                         {
-                            var x = double.Parse(spot?.LocationX ?? "0", System.Globalization.CultureInfo.InvariantCulture);
-                            var y = double.Parse(spot?.LocationY ?? "0", System.Globalization.CultureInfo.InvariantCulture);
+                            var x = spot?.LocationX ?? 0;
+                            var y = spot?.LocationY ?? 0;
 
                             // Marker
                         <RadzenGoogleMapMarker Style="color: white; font-weight: 700;" Title="@spot?.Nrplade" Label="@spot?.Nrplade" Position=@(new GoogleMapPosition() { Lat = x, Lng = y }) />
