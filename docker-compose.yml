@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  nummerplade-api:
+    image: ${DOCKER_REGISTRY-}nummerpladeapi
+    build:
+      context: .
+      dockerfile: nummerplade-api/Dockerfile
+
+  nummerplade-ui:
+    image: ${DOCKER_REGISTRY-}nummerpladeui
+    build:
+      context: .
+      dockerfile: nummerplade-ui/Dockerfile
+

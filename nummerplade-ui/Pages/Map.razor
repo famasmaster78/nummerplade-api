@@ -7,10 +7,9 @@
 <div class="container-fluid">
     <div class="row p-3">
         <div class="col">
-            @*<RadzenCard Class="mb-4">
-                    <RadzenCheckBox @bind-Value=@showMadridMarker Name="showMarker" />
-                    <RadzenLabel Text="Show marker for Madrid" Component="showMarker" Style="margin-left: 8px; vertical-align: middle;" />
-                </RadzenCard>*@
+            <RadzenCard Class="mb-4">
+                <a href="/active"><RadzenLabel Text="Gå tilbage" Component="showMarker" Style="margin-left: 8px; vertical-align: middle;" /></a>
+            </RadzenCard>
             <RadzenGoogleMap @ref=map style="height: 700px" Options=@(new Dictionary<string, object> { { "disableDoubleClickZoom", true } })
                              Zoom=@zoom Center=@(new GoogleMapPosition() { Lat = 56.209797, Lng = 9.3001658 }) MapClick=@OnMapClick MarkerClick=@OnMarkerClick ApiKey="AIzaSyC-dGuEULtKnzH6GgtQW39ODjU7Wffrb1A">
 

@@ -5,6 +5,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>nummerplade_ui</RootNamespace>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>93f9fabe-85e7-47e0-a856-519e50d0efce</UserSecretsId>
+    <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'nummerplade-ui' " />
@@ -12,10 +15,11 @@
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Radzen.Blazor" />
     <None Remove="System.Globalization" />
+    <None Remove="ui.dockerfile" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
-    <PackageReference Include="Radzen.Blazor" Version="4.4.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.1" />
+    <PackageReference Include="Radzen.Blazor" Version="4.4.7" />
     <PackageReference Include="System.Globalization" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
@@ -23,4 +27,9 @@
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
+  <!--
+    <ItemGroup>
+    <Compile Include="Dockerfile" />
+  </ItemGroup>
+-->
 </Project>
